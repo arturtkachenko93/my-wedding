@@ -20,3 +20,4 @@ telegram: {
     botToken: "YOUR_BOT_TOKEN_HERE", // Замените на токен вашего бота
     chatId: "YOUR_CHAT_ID_HERE"       // Замените на ваш chat_id
 }# my-wedding
+# my-wedding
