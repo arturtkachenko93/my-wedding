@@ -151,8 +151,6 @@ const WEDDING_CONFIG = {
     },
     
     telegram: {
-        // botToken: "8731889618:AAGMYTjgfLBWkiEcb_1Z0bbe4X0LE6_UM48",
-        // chatId: "945337029"
         apiUrl: '/api/send-rsvp'
     }
 };
