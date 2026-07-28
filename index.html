@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Свадебный сайт Карло и Софии">
+    <title>Свадьба Карло и Софии</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Config -->
+    <script src="config.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-hearts">
+                <span class="heart-left">💚</span>
+                <span class="heart-center">💍</span>
+                <span class="heart-right">🤍</span>
+            </div>
+            <div class="loader-text">Загрузка...</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <!-- Navigation -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <!-- Will be populated by JS -->
+                </div>
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Header Section -->
+        <header class="header" id="home">
+            <div class="header-particles" id="headerParticles"></div>
+            <div class="header-content">
+                <div class="header-images-left">
+                    <div class="header-img-frame floating" data-speed="0.5">
+                        <img src="" alt="Фото 1" id="headerImg1" loading="lazy">
+                    </div>
+                    <div class="header-img-frame floating" data-speed="-0.3">
+                        <img src="" alt="Фото 2" id="headerImg2" loading="lazy">
+                    </div>
+                    <div class="header-img-frame floating" data-speed="0.7">
+                        <img src="" alt="Фото 3" id="headerImg3" loading="lazy">
+                    </div>
+                </div>
+                
+                <div class="header-text fade-in-up">
+                    <p class="header-subtitle" id="headerSubtitle"></p>
+                    <h1 class="header-title" id="headerTitle">
+                        <span class="name-animation"></span>
+                    </h1>
+                    <div class="header-wedding-rings">
+                        <span class="ring ring-left">💍</span>
+                        <span class="ring-heart">💚</span>
+                        <span class="ring ring-right">💍</span>
+                    </div>
+                    <p class="header-date pulse-text" id="headerDate"></p>
+                    <a href="#rsvp" class="btn-primary btn-shine">
+                        <span id="rsvpBtnText"></span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="header-images-right">
+                    <div class="header-img-frame floating" data-speed="-0.4">
+                        <img src="" alt="Фото 4" id="headerImg4" loading="lazy">
+                    </div>
+                    <div class="header-img-frame floating" data-speed="0.6">
+                        <img src="" alt="Фото 5" id="headerImg5" loading="lazy">
+                    </div>
+                    <div class="header-additional fade-in-right">
+                        <p id="headerAdditionalText"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Листайте вниз</span>
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Countdown Section -->
+        <section class="countdown" id="countdown">
+            <div class="container">
+                <h2 class="section-title reveal">💍 До свадьбы осталось</h2>
+                <div class="countdown-timer reveal" id="countdownTimer">
+                    <div class="countdown-item">
+                        <div class="countdown-flip" id="daysFlip">
+                            <span class="countdown-number" id="days">--</span>
+                        </div>
+                        <span class="countdown-label" id="daysLabel">Дней</span>
+                    </div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item">
+                        <div class="countdown-flip" id="hoursFlip">
+                            <span class="countdown-number" id="hours">--</span>
+                        </div>
+                        <span class="countdown-label" id="hoursLabel">Часов</span>
+                    </div>
+                    <span class="countdown-separator">:</span>
+                    <div class="countdown-item">
+                        <div class="countdown-flip" id="minutesFlip">
+                            <span class="countdown-number" id="minutes">--</span>
+                        </div>
+                        <span class="countdown-label" id="minutesLabel">Минут</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Details Section -->
+        <section class="details" id="details">
+            <div class="container">
+                <h2 class="section-title reveal">📍 Детали свадьбы</h2>
+                <div class="details-grid">
+                    <div class="detail-item reveal" data-delay="0">
+                        <div class="detail-icon">📅</div>
+                        <h3 id="detailDateTitle"></h3>
+                        <p id="detailDate1"></p>
+                        <p id="detailDate2"></p>
+                    </div>
+                    <div class="detail-item reveal" data-delay="200">
+                        <div class="detail-icon">🕐</div>
+                        <h3 id="detailTimeTitle"></h3>
+                        <p id="detailTime1"></p>
+                        <p id="detailTime2"></p>
+                    </div>
+                    <div class="detail-item reveal" data-delay="400">
+                        <div class="detail-icon">📍</div>
+                        <h3 id="detailLocationTitle"></h3>
+                        <p id="detailLocation1"></p>
+                        <p id="detailLocation2"></p>
+                    </div>
+                </div>
+                
+                <!-- Map Section -->
+                <div class="map-section reveal">
+                    <h3 class="map-title">📍 Как добраться</h3>
+                    <div class="map-container" id="mapContainer">
+                        <div class="map-tabs">
+                            <button class="map-tab active" data-location="ceremony">
+                                💒 Церемония
+                            </button>
+                            <button class="map-tab" data-location="party">
+                                🎉 Банкет
+                            </button>
+                        </div>
+                        <div class="map-wrapper" id="mapWrapper">
+                            <div id="map" class="map-frame"></div>
+                        </div>
+                        <div class="map-buttons">
+                            <a href="#" class="btn-route" id="routeBtn1" target="_blank">
+                                🗺️ Построить маршрут к церемонии
+                            </a>
+                            <a href="#" class="btn-route" id="routeBtn2" target="_blank">
+                                🗺️ Построить маршрут к банкету
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="timeline" id="timeline">
+            <div class="container">
+                <h2 class="section-title reveal" id="timelineTitle"></h2>
+                <div class="timeline-items" id="timelineItems">
+                    <!-- Will be populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Dress Code Section -->
+        <section class="dress-code" id="dresscode">
+            <div class="container">
+                <div class="dress-code-content reveal">
+                    <p class="dress-code-subtitle" id="dressCodeSubtitle"></p>
+                    <h2 class="dress-code-title" id="dressCodeTitle"></h2>
+                    <div class="dress-code-colors">
+                        <div class="color-circle cream">
+                            <span class="color-label">Кремовый</span>
+                        </div>
+                        <div class="color-circle green">
+                            <span class="color-label">Зеленый</span>
+                        </div>
+                    </div>
+                    <div class="dress-code-palette">
+                        <div class="palette-item" style="background: #FFFDD0"></div>
+                        <div class="palette-item" style="background: #F5F0E8"></div>
+                        <div class="palette-item" style="background: #E8E0D5"></div>
+                        <div class="palette-item" style="background: #A7B3A3"></div>
+                        <div class="palette-item" style="background: #8B9D83"></div>
+                        <div class="palette-item" style="background: #6B7B63"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Section -->
+        <section class="rsvp" id="rsvp">
+            <div class="container">
+                <div class="rsvp-card reveal">
+                    <div class="rsvp-image">
+                        <img src="" alt="RSVP" id="rsvpImg" loading="lazy">
+                    </div>
+                    <div class="rsvp-content">
+                        <p class="rsvp-subtitle" id="rsvpSubtitle"></p>
+                        <h2 class="rsvp-title" id="rsvpTitle"></h2>
+                        <p class="rsvp-deadline" id="rsvpDeadline"></p>
+                        <p class="rsvp-date" id="rsvpDate"></p>
+                        
+                        <form id="rsvpForm" class="rsvp-form">
+                            <div class="form-group radio-group">
+                                <label class="form-label" id="rsvpQuestion"></label>
+                                <div class="radio-options">
+                                    <label class="radio-label">
+                                        <input type="radio" name="attendance" value="accept" checked>
+                                        <span class="radio-custom"></span>
+                                        <span id="acceptText"></span>
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="attendance" value="decline">
+                                        <span class="radio-custom"></span>
+                                        <span id="declineText"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="firstName">
+                                        <span id="firstNameLabel"></span> *
+                                    </label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="lastName">
+                                        <span id="lastNameLabel"></span> *
+                                    </label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="email">
+                                        <span id="emailLabel"></span> *
+                                    </label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="phone">
+                                        <span id="phoneLabel"></span> *
+                                    </label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="btn-add-guest" id="addGuestBtn">
+                                <span id="addGuestText"></span>
+                            </button>
+                            
+                            <div class="additional-fields" id="additionalFields">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <span id="musicQuestion"></span> *
+                                    </label>
+                                    <div class="radio-options" id="musicOptions">
+                                        <!-- Will be populated by JS -->
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="additionalInfo">
+                                        <span id="additionalInfoLabel"></span>
+                                    </label>
+                                    <textarea id="additionalInfo" name="additionalInfo" rows="3"></textarea>
+                                </div>
+                                
+                                <div id="guestFields">
+                                    <!-- Dynamic guest fields -->
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit" id="submitBtn">
+                                <span id="submitText"></span>
+                                <div class="btn-spinner"></div>
+                            </button>
+                        </form>
+                        
+                        <div class="form-success" id="formSuccess" style="display: none;">
+                            <div class="success-icon">✓</div>
+                            <h3 id="successTitle"></h3>
+                            <p id="successMessage"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-links" id="footerLinks">
+                        <!-- Will be populated by JS -->
+                    </div>
+                    <p class="footer-text" id="footerText"></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_YANDEX_MAPS_API_KEY&lang=ru_RU" type="text/javascript"></script>
+    <script src="app.js"></script>
+</body>
+</html>
