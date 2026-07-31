@@ -398,7 +398,7 @@ function initForm() {
         
         // Проверка чекбоксов "Напитки"
         if (drinks.length === 0) {
-            showCheckboxError('drinks', 'Пожалуйста, выберите хотя бы один напиток');
+            showCheckboxError('drinks', 'Пожалуйста, выберите хотя бы один вариант');
             isValid = false;
         }
         
