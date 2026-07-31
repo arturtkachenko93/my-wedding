@@ -454,9 +454,9 @@ function formatTelegramMessage(data) {
 💍 <b>Новый ответ на приглашение!</b>
 
 ${attendanceEmoji} <b>Статус:</b> ${attendanceText}
-👤 <b>Имя:</b> ${data.firstName} ${data.lastName}
+👤 <b>Имя и Фамилия:</b> ${data.firstName} ${data.lastName}
 📱 <b>Телефон:</b> ${data.phone}
-🎵 <b>Музыка:</b> ${data.music}
+🎵 <b>Алко:</b> ${data.music}
 `;
 
     if (data.guests.length > 0) {
