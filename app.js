@@ -103,19 +103,21 @@ function populateContent() {
     setText('successMessage', config.rsvp.successMessage);
     setText('rsvpNote', config.rsvp.noteText);
     
-    // Музыкальные опции
+    // Опции напитков (musicOptions заменены на чекбоксы)
     const musicOptions = document.getElementById('musicOptions');
-    config.rsvp.musicOptions.forEach((option, index) => {
+    musicOptions.innerHTML = ''; // очистим на всякий случай
+
+    config.rsvp.musicOptions.forEach((option) => {
         const label = document.createElement('label');
-        label.className = 'radio-label';
+        label.className = 'checkbox-label';
         label.innerHTML = `
-        <input type="radio" name="music" value="${option}" ${index === 0 ? 'checked' : ''}>
-        <span class="radio-custom"></span>
-        <span>${option}</span>
-    `;
+            <input type="checkbox" name="drinks" value="${option}">
+            <span class="checkbox-custom"></span>
+            <span>${option}</span>
+        `;
         musicOptions.appendChild(label);
     });
-    
+        
     // Навигация
     const navLinks = document.getElementById('navLinks');
     const footerLinks = document.getElementById('footerLinks');
@@ -136,7 +138,6 @@ function populateContent() {
 
 // Оптимизация изображений
 function initImageOptimization() {
-    // Добавляем поддержку WebP если браузер поддерживает
     const supportsWebP = document.createElement('canvas')
         .toDataURL('image/webp')
         .indexOf('data:image/webp') === 0;
@@ -150,17 +151,14 @@ function setOptimizedImage(id, src) {
     const img = document.getElementById(id);
     if (!img || !src) return;
     
-    // Создаем оптимизированное изображение
     const optimizedImg = new Image();
     optimizedImg.onload = function() {
         img.src = src;
     };
     optimizedImg.onerror = function() {
-        // Fallback к оригинальному URL
         img.src = src;
     };
     
-    // Добавляем параметры оптимизации для Unsplash
     if (src.includes('unsplash.com')) {
         const optimizedSrc = src.includes('?') 
             ? src + '&w=800&q=80&auto=format'
@@ -173,7 +171,6 @@ function setOptimizedImage(id, src) {
 
 // Навигация
 function initNavigation() {
-    // Плавная прокрутка
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -189,7 +186,6 @@ function initNavigation() {
         });
     });
     
-    // Изменение навбара при прокрутке
     window.addEventListener('scroll', function() {
         const navbar = document.getElementById('navbar');
         const scrollTopBtn = document.getElementById('scrollTopBtn');
@@ -200,7 +196,6 @@ function initNavigation() {
             navbar.classList.remove('scrolled');
         }
         
-        // Показываем/скрываем кнопку скролла наверх
         if (window.scrollY > 500) {
             scrollTopBtn.classList.add('visible');
         } else {
@@ -223,18 +218,13 @@ function initScrollToTop() {
 
 // Обратный отсчет
 function initCountdown() {
-    console.log('Инициализация таймера...');
-    
     const weddingDate = new Date(WEDDING_CONFIG.weddingDate);
-    console.log('Дата свадьбы:', weddingDate);
     
-    // Проверяем, что дата корректная
     if (isNaN(weddingDate.getTime())) {
         console.error('Ошибка: неверная дата свадьбы в конфиге!');
         return;
     }
     
-    // Устанавливаем лейблы
     setText('daysLabel', WEDDING_CONFIG.countdown.labels.days);
     setText('hoursLabel', WEDDING_CONFIG.countdown.labels.hours);
     setText('minutesLabel', WEDDING_CONFIG.countdown.labels.minutes);
@@ -243,9 +233,6 @@ function initCountdown() {
         const now = new Date();
         const diff = weddingDate - now;
         
-        console.log('Разница в мс:', diff);
-        
-        // Если свадьба уже прошла
         if (diff <= 0) {
             document.getElementById('days').textContent = '00';
             document.getElementById('hours').textContent = '00';
@@ -253,24 +240,16 @@ function initCountdown() {
             return;
         }
         
-        // Вычисляем значения
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
         
-        // Обновляем отображение
         document.getElementById('days').textContent = String(days).padStart(2, '0');
         document.getElementById('hours').textContent = String(hours).padStart(2, '0');
         document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-        
-        console.log(`Таймер: ${days}д ${hours}ч ${minutes}м ${seconds}с`);
     }
     
-    // Запускаем сразу
     updateCountdown();
-    
-    // Обновляем каждую секунду
     setInterval(updateCountdown, 1000);
 }
 
@@ -278,8 +257,6 @@ function initCountdown() {
 function initMap() {
     const mapFrame = document.getElementById('map');
     const mapTabs = document.querySelectorAll('.map-tab');
-    
-    // Координаты из конфига
     const locations = WEDDING_CONFIG.locations;
     let currentLocation = 'ceremony';
     
@@ -296,7 +273,6 @@ function initMap() {
         const loc = locations[location];
         if (!loc) return;
         
-        // Используем Яндекс.Карты
         if (typeof ymaps !== 'undefined') {
             ymaps.ready(() => {
                 mapFrame.innerHTML = '';
@@ -313,7 +289,6 @@ function initMap() {
                 map.geoObjects.add(placemark);
             });
         } else {
-            // Fallback: Google Maps iframe
             mapFrame.innerHTML = `
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000!2d${loc.lng}!3d${loc.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z${loc.lat}°N${loc.lng}°E!5e0!3m2!1sru!2sru!4v1234567890"
@@ -326,7 +301,6 @@ function initMap() {
         }
     }
     
-    // Загружаем первую карту
     loadMap('ceremony');
 }
 
@@ -336,7 +310,6 @@ function updateRouteLinks() {
     const ceremonyLoc = config.locations.ceremony;
     const partyLoc = config.locations.party;
     
-    // Яндекс.Навигатор
     const routeBtn1 = document.getElementById('routeBtn1');
     const routeBtn2 = document.getElementById('routeBtn2');
     
@@ -347,6 +320,37 @@ function updateRouteLinks() {
     if (routeBtn2) {
         routeBtn2.href = `https://yandex.ru/maps/?rtext=~${partyLoc.lat},${partyLoc.lng}&rtt=auto`;
     }
+}
+
+// Вспомогательные функции для ошибок
+function showRadioError(name, message) {
+    const radio = document.querySelector(`input[name="${name}"]`);
+    if (!radio) return;
+    const container = radio.closest('.radio-group, .form-group');
+    if (!container) return;
+    let errorEl = container.querySelector('.error-message');
+    if (!errorEl) {
+        errorEl = document.createElement('span');
+        errorEl.className = 'error-message';
+        container.appendChild(errorEl);
+    }
+    errorEl.textContent = message;
+}
+
+function showCheckboxError(name, message) {
+    const container = document.getElementById('musicOptions'); // контейнер с чекбоксами
+    if (!container) return;
+    let errorEl = container.parentElement.querySelector('.error-message');
+    if (!errorEl) {
+        errorEl = document.createElement('span');
+        errorEl.className = 'error-message';
+        container.parentElement.appendChild(errorEl);
+    }
+    errorEl.textContent = message;
+}
+
+function clearErrors() {
+    document.querySelectorAll('.error-message').forEach(el => el.remove());
 }
 
 // Форма
@@ -377,36 +381,75 @@ function initForm() {
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
+        // Очистка предыдущих ошибок
+        clearErrors();
+        
+        const formData = new FormData(form);
+        const attendance = formData.get('attendance');
+        const drinks = formData.getAll('drinks');
+        
+        let isValid = true;
+        
+        // Проверка радио-группы "Придёте?"
+        if (!attendance) {
+            showRadioError('attendance', 'Пожалуйста, выберите вариант');
+            isValid = false;
+        }
+        
+        // Проверка чекбоксов "Напитки"
+        if (drinks.length === 0) {
+            showCheckboxError('drinks', 'Пожалуйста, выберите хотя бы один напиток');
+            isValid = false;
+        }
+        
+        // Дополнительно можно проверить текстовые поля (имя, фамилия, телефон)
+        const firstName = formData.get('firstName').trim();
+        const lastName = formData.get('lastName').trim();
+        const phone = formData.get('phone').trim();
+        
+        if (!firstName) {
+            showTextError('firstName', 'Обязательное поле');
+            isValid = false;
+        }
+        if (!lastName) {
+            showTextError('lastName', 'Обязательное поле');
+            isValid = false;
+        }
+        if (!phone) {
+            showTextError('phone', 'Обязательное поле');
+            isValid = false;
+        }
+        
+        if (!isValid) return; // Прерываем, если ошибки есть, лоадер не включали
+        
+        // Валидация пройдена – включаем лоадер и отправляем
         const submitBtn = document.getElementById('submitBtn');
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
         
-        const formData = new FormData(form);
         const data = {
-            attendance: formData.get('attendance'),
-            firstName: formData.get('firstName'),
-            lastName: formData.get('lastName'),
-            phone: formData.get('phone'),
-            music: formData.get('music'),
-            additionalInfo: formData.get('additionalInfo'),
+            attendance,
+            firstName,
+            lastName,
+            phone,
+            drinks,
+            additionalInfo: formData.get('additionalInfo').trim(),
             guests: []
         };
         
         // Сбор гостей
         for (let i = 1; i <= guestCount; i++) {
             const guestName = formData.get(`guest${i}`);
-            if (guestName) {
-                data.guests.push(guestName);
+            if (guestName && guestName.trim()) {
+                data.guests.push(guestName.trim());
             }
         }
         
-        // Отправка данных
         try {
             const response = await sendToTelegram(data);
             if (response.ok) {
                 form.style.display = 'none';
                 document.getElementById('formSuccess').style.display = 'block';
-                // Скролл к успешному сообщению
                 document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
                 throw new Error('Failed to send');
@@ -421,10 +464,24 @@ function initForm() {
     });
 }
 
+// Вспомогательная функция для ошибок текстовых полей
+function showTextError(fieldName, message) {
+    const input = document.querySelector(`[name="${fieldName}"]`);
+    if (!input) return;
+    const container = input.closest('.form-group');
+    if (!container) return;
+    let errorEl = container.querySelector('.error-message');
+    if (!errorEl) {
+        errorEl = document.createElement('span');
+        errorEl.className = 'error-message';
+        container.appendChild(errorEl);
+    }
+    errorEl.textContent = message;
+}
+
 // Отправка в Telegram
 async function sendToTelegram(data) {
     try {
-        // Отправляем через безопасный API маршрут Vercel
         const response = await fetch(WEDDING_CONFIG.telegram.apiUrl, {
             method: 'POST',
             headers: {
@@ -445,20 +502,20 @@ async function sendToTelegram(data) {
     }
 }
 
-// Форматирование сообщения
+// Форматирование сообщения для Telegram
 function formatTelegramMessage(data) {
     const attendanceEmoji = data.attendance === 'accept' ? '✅' : '❌';
     const attendanceText = data.attendance === 'accept' ? 'Придет 🎉' : 'Не сможет прийти 😔';
     
-    let message = `
-💍 <b>Новый ответ на приглашение!</b>
-
-${attendanceEmoji} <b>Статус:</b> ${attendanceText}
-👤 <b>Имя и Фамилия:</b> ${data.firstName} ${data.lastName}
-📱 <b>Телефон:</b> ${data.phone}
-🎵 <b>Алко:</b> ${data.music}
-`;
-
+    let message = `💍 <b>Новый ответ на приглашение!</b>\n\n`;
+    message += `${attendanceEmoji} <b>Статус:</b> ${attendanceText}\n`;
+    message += `👤 <b>Имя и Фамилия:</b> ${data.firstName} ${data.lastName}\n`;
+    message += `📱 <b>Телефон:</b> ${data.phone}\n`;
+    
+    if (data.drinks && data.drinks.length > 0) {
+        message += `🍹 <b>Предпочтения по напиткам:</b> ${data.drinks.join(', ')}\n`;
+    }
+    
     if (data.guests.length > 0) {
         message += `\n👥 <b>Гости:</b>\n`;
         data.guests.forEach((guest, index) => {
@@ -486,7 +543,6 @@ function initMobileMenu() {
         document.body.classList.toggle('menu-open');
     });
     
-    // Закрытие меню при клике на ссылку
     document.querySelectorAll('#navLinks a').forEach(link => {
         link.addEventListener('click', function() {
             navLinks.classList.remove('active');
@@ -495,7 +551,6 @@ function initMobileMenu() {
         });
     });
     
-    // Закрытие по клику вне меню
     document.addEventListener('click', function(e) {
         if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
             navLinks.classList.remove('active');
@@ -523,7 +578,6 @@ function initScrollAnimations() {
         });
     }, observerOptions);
     
-    // Наблюдаем за элементами с классом reveal
     document.querySelectorAll('.reveal').forEach(element => {
         observer.observe(element);
     });

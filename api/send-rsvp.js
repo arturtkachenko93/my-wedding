@@ -61,9 +61,9 @@ function formatMessage(data) {
     
     let message = `💍 <b>Новый ответ на приглашение!</b>\n\n`;
     message += `${attendanceEmoji} <b>Статус:</b> ${attendanceText}\n`;
-    message += `👤 <b>Имя:</b> ${data.firstName} ${data.lastName}\n`;
+    message += `👤 <b>Имя и Фамилия:</b> ${data.firstName} ${data.lastName}\n`;
     message += `📱 <b>Телефон:</b> ${data.phone}\n`;
-    message += `🎵 <b>Музыка:</b> ${data.music}\n`;
+    message += `🎵 <b>Алко:</b> ${data.music}\n`;
     
     if (data.guests && data.guests.length > 0) {
         message += `\n👥 <b>Гости:</b>\n`;
