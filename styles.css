@@ -1518,6 +1518,13 @@ textarea:focus {
 }
 
 @media (max-width: 768px) {
+    .header-title .name-animation {
+        line-height: 113px;
+    }
+}
+
+
+@media (max-width: 768px) {
     .nav-links {
         position: fixed;
         top: 0;
