@@ -1789,3 +1789,11 @@ textarea:focus {
 .guestFields > div {
     margin-bottom: 16px;
 }
+
+.success-icon-img {
+    display: block;
+    margin: 0 auto 1.5rem;
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+}

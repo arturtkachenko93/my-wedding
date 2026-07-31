@@ -394,7 +394,7 @@ function initForm() {
     const guestFields = document.getElementById('guestFields');
 
     let guestCount = 0;
-        setupPhoneMask();
+    setupPhoneMask();
     // Собираем все обязательные поля внутри rsvpFields для управления required
     const requiredInputs = rsvpFields.querySelectorAll('input[required], textarea[required]');
     
@@ -475,6 +475,15 @@ function initForm() {
             try {
                 const response = await sendToTelegram(data);
                 if (response.ok) {
+                    // Устанавливаем иконку и текст для отказа
+                    const successIcon = document.getElementById('successIcon');
+                    const successTitle = document.getElementById('successTitle');
+                    const successMessage = document.getElementById('successMessage');
+                    successIcon.src = 'https://alfabank.servicecdn.ru/icons/emoji/72/face_sad.png';
+                    successIcon.alt = 'Грустный смайлик';
+                    successTitle.textContent = 'Ваш ответ отправлен';
+                    successMessage.textContent = 'Очень жаль, что у вас не получится разделить праздник с нами';
+
                     form.style.display = 'none';
                     document.getElementById('formSuccess').style.display = 'block';
                     document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -508,14 +517,15 @@ function initForm() {
         const firstName = (formData.get('firstName') || '').trim();
         const lastName = (formData.get('lastName') || '').trim();
         const phone = (formData.get('phone') || '').trim();
-        // Проверка, что в телефоне ровно 10 цифр (без учёта +7)
-const phoneDigits = phone.replace(/\D/g, '');
-if (phoneDigits.length !== 11) {
-    showTextError('phone', 'Введите номер телефона полностью (10 цифр после +7)');
-    document.getElementById('phone').focus();
-    document.getElementById('phone').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    isValid = false;
-}
+        
+        // Проверка, что в телефоне ровно 11 цифр (7 + 10 цифр номера)
+        const phoneDigits = phone.replace(/\D/g, '');
+        if (phoneDigits.length !== 11) {
+            showTextError('phone', 'Введите номер телефона полностью (10 цифр после +7)');
+            document.getElementById('phone').focus();
+            document.getElementById('phone').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            isValid = false;
+        }
         
         if (!firstName) { showTextError('firstName', 'Обязательное поле'); isValid = false; }
         if (!lastName) { showTextError('lastName', 'Обязательное поле'); isValid = false; }
@@ -547,6 +557,15 @@ if (phoneDigits.length !== 11) {
         try {
             const response = await sendToTelegram(data);
             if (response.ok) {
+                // Устанавливаем иконку и текст для принятия
+                const successIcon = document.getElementById('successIcon');
+                const successTitle = document.getElementById('successTitle');
+                const successMessage = document.getElementById('successMessage');
+                successIcon.src = 'https://alfabank.servicecdn.ru/icons/emoji/72/face_smiling-heart-eyes.png';
+                successIcon.alt = 'Сердечки';
+                successTitle.textContent = WEDDING_CONFIG.rsvp.successTitle;
+                successMessage.textContent = WEDDING_CONFIG.rsvp.successMessage;
+
                 form.style.display = 'none';
                 document.getElementById('formSuccess').style.display = 'block';
                 document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -562,7 +581,6 @@ if (phoneDigits.length !== 11) {
         }
     });
 }
-
 // Отправка в Telegram
 async function sendToTelegram(data) {
     const response = await fetch(WEDDING_CONFIG.telegram.apiUrl, {
