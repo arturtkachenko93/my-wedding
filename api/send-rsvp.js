@@ -57,7 +57,6 @@ function formatMessage(data) {
     let message = `💍 <b>Новый ответ на приглашение!</b>\n\n`;
     message += `${attendanceEmoji} <b>Статус:</b> ${attendanceText}\n`;
     message += `👤 <b>Имя:</b> ${data.firstName} ${data.lastName}\n`;
-    message += `📧 <b>Email:</b> ${data.email}\n`;
     message += `📱 <b>Телефон:</b> ${data.phone}\n`;
     
     // Проверяем, что drinks существует и не пуст
