@@ -33,7 +33,6 @@
         <nav class="navbar" id="navbar">
             <div class="nav-container">
                 <div class="nav-brand">
-
                 </div>
                 <div class="nav-links" id="navLinks">
                     <!-- Will be populated by JS -->
@@ -191,8 +190,6 @@
                     <p class="dress-code-subtitle" id="dressCodeSubtitle"></p>
                     <h2 class="dress-code-title" id="dressCodeTitle"></h2>
                     <div class="dress-code-colors">
-
-
                     </div>
                     <div class="dress-code-palette">
                         <div class="palette-item" style="background: #F0D3D3"></div>
@@ -226,13 +223,14 @@
                                         <span id="acceptText"></span>
                                     </label>
                                     <label class="radio-label">
-                                        <input type="radio" name="attendance" value="decline" >
+                                        <input type="radio" name="attendance" value="decline">
                                         <span class="radio-custom"></span>
                                         <span id="declineText"></span>
                                     </label>
                                 </div>
                             </div>
                             
+                            <!-- Блок с именем и фамилией, видимый всегда -->
                             <div class="form-row">
                                 <div class="form-group">
                                     <label class="form-label" for="firstName">
@@ -247,44 +245,44 @@
                                     <input type="text" id="lastName" name="lastName" required>
                                 </div>
                             </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label class="form-label" for="phone">
-                                        <span id="phoneLabel"></span> *
-                                    </label>
-                                    <input type="tel" id="phone" name="phone" required>
-                                </div>
-                            </div>
-                            
-                            <button type="button" class="btn-add-guest" id="addGuestBtn">
-                                <span id="addGuestText"></span>
-                            </button>
 
-                                                           <div id="guestFields">
+                            <!-- Обёртка для скрываемых при отказе полей -->
+                            <div id="rsvpFields">
+                                        <div class="form-group" style="width: 100%;">
+                                        <label class="form-label" for="phone">
+                                            <span id="phoneLabel"></span> *
+                                        </label>
+                                        <input type="tel" id="phone" name="phone" value="+7" required maxlength="12">
+                                    </div>
+                                
+                                <button type="button" class="btn-add-guest" id="addGuestBtn">
+                                    <span id="addGuestText"></span>
+                                </button>
+
+                                <div id="guestFields" class="guestFields">
                                     <!-- Dynamic guest fields -->
                                 </div>
-                            
-                            <div class="additional-fields" id="additionalFields">
-                                <div class="form-group">
-                                    <label class="form-label">
-                                        <span id="musicQuestion"></span> *
-                                    </label>
-                                    <div class="radio-options" id="musicOptions">
-                                        <!-- Will be populated by JS -->
+                                
+                                <div class="additional-fields" id="additionalFields">
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <span id="musicQuestion"></span> *
+                                        </label>
+                                        <div class="radio-options" id="musicOptions">
+                                            <!-- Will be populated by JS -->
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label" for="additionalInfo">
+                                            <span id="additionalInfoLabel"></span>
+                                        </label>
+                                        <textarea id="additionalInfo" name="additionalInfo" rows="3"></textarea>
                                     </div>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <label class="form-label" for="additionalInfo">
-                                        <span id="additionalInfoLabel"></span>
-                                    </label>
-                                    <textarea id="additionalInfo" name="additionalInfo" rows="3"></textarea>
-                                </div>
-                                
-                            </div>
 
-                            <p class="rsvp-note" id="rsvpNote"></p>
+                                <p class="rsvp-note" id="rsvpNote"></p>
+                            </div>
                             
                             <button type="submit" class="btn-submit" id="submitBtn">
                                 <span id="submitText"></span>
@@ -323,7 +321,7 @@
     </button>
 
     <!-- Scripts -->
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_YANDEX_MAPS_API_KEY&lang=ru_RU" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <script src="app.js"></script>
 </body>
 </html>

@@ -9,7 +9,7 @@ const WEDDING_CONFIG = {
     },
     
     // Дата и время свадьбы
-    weddingDate: "2026-09-09T16:00:00+03:00",
+    weddingDate: "2026-09-09T15:00:00+03:00",
     
     // Локации для карты
     locations: {

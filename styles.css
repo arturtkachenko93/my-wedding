@@ -1209,6 +1209,7 @@ textarea:focus {
     font-family: 'Montserrat', sans-serif;
     transition: all 0.3s ease;
     font-weight: 500;
+    margin: 16px 0;
 }
 
 .btn-add-guest:hover {
@@ -1308,7 +1309,6 @@ textarea:focus {
 #guestFields {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
 }
 
 #guestFields .form-group {
@@ -1515,6 +1515,7 @@ textarea:focus {
     margin: 0;
     line-height: 1.5;
     padding: 0 0.5rem;
+    margin-top: 8px;
 }
 
 @media (min-width: 1346px) {
@@ -1660,7 +1661,7 @@ textarea:focus {
     }
     
     .dress-code-title {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
     .dress-code-colors {
@@ -1776,4 +1777,15 @@ textarea:focus {
     font-size: 12px;
     color: red;
     line-height: 0px;
+}
+
+#rsvpFields {
+    transition: opacity 0.3s;
+}
+#rsvpFields[style*="display: none"] {
+    display: none !important;
+}
+
+.guestFields > div {
+    margin-bottom: 16px;
 }
