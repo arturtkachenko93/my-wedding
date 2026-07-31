@@ -1,6 +1,5 @@
 // Основной JavaScript файл свадебного сайта
 
-// Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', function() {
     initApp();
 });
@@ -43,7 +42,8 @@ function populateContent() {
     
     // Заголовок
     setText('headerSubtitle', config.header.subtitle);
-    document.querySelector('.name-animation').textContent = config.couple.fullNames();
+    // fullNames – строка, не функция
+    document.querySelector('.name-animation').textContent = config.couple.fullNames;
     setText('headerAdditionalText', config.header.additionalText);
     setText('rsvpBtnText', config.header.rsvpBtnText);
     
@@ -94,6 +94,7 @@ function populateContent() {
     setText('declineText', config.rsvp.declineText);
     setText('firstNameLabel', config.rsvp.firstNameLabel);
     setText('lastNameLabel', config.rsvp.lastNameLabel);
+    setText('emailLabel', config.rsvp.emailLabel);
     setText('phoneLabel', config.rsvp.phoneLabel);
     setText('addGuestText', config.rsvp.addGuestText);
     setText('musicQuestion', config.rsvp.musicQuestion);
@@ -103,10 +104,9 @@ function populateContent() {
     setText('successMessage', config.rsvp.successMessage);
     setText('rsvpNote', config.rsvp.noteText);
     
-    // Опции напитков (musicOptions заменены на чекбоксы)
+    // Напитки (чекбоксы)
     const musicOptions = document.getElementById('musicOptions');
-    musicOptions.innerHTML = ''; // очистим на всякий случай
-
+    musicOptions.innerHTML = '';
     config.rsvp.musicOptions.forEach((option) => {
         const label = document.createElement('label');
         label.className = 'checkbox-label';
@@ -218,8 +218,9 @@ function initScrollToTop() {
 
 // Обратный отсчет
 function initCountdown() {
-    const weddingDate = new Date(WEDDING_CONFIG.weddingDate);
+    console.log('Инициализация таймера...');
     
+    const weddingDate = new Date(WEDDING_CONFIG.weddingDate);
     if (isNaN(weddingDate.getTime())) {
         console.error('Ошибка: неверная дата свадьбы в конфиге!');
         return;
@@ -228,6 +229,7 @@ function initCountdown() {
     setText('daysLabel', WEDDING_CONFIG.countdown.labels.days);
     setText('hoursLabel', WEDDING_CONFIG.countdown.labels.hours);
     setText('minutesLabel', WEDDING_CONFIG.countdown.labels.minutes);
+    setText('secondsLabel', WEDDING_CONFIG.countdown.labels.seconds);
     
     function updateCountdown() {
         const now = new Date();
@@ -237,16 +239,19 @@ function initCountdown() {
             document.getElementById('days').textContent = '00';
             document.getElementById('hours').textContent = '00';
             document.getElementById('minutes').textContent = '00';
+            document.getElementById('seconds').textContent = '00';
             return;
         }
         
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
         
         document.getElementById('days').textContent = String(days).padStart(2, '0');
         document.getElementById('hours').textContent = String(hours).padStart(2, '0');
         document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
     }
     
     updateCountdown();
@@ -315,19 +320,31 @@ function updateRouteLinks() {
     
     if (routeBtn1) {
         routeBtn1.href = `https://yandex.ru/maps/?rtext=~${ceremonyLoc.lat},${ceremonyLoc.lng}&rtt=auto`;
+        routeBtn1.textContent = '🗺️ Построить маршрут к церемонии';
     }
     
     if (routeBtn2) {
         routeBtn2.href = `https://yandex.ru/maps/?rtext=~${partyLoc.lat},${partyLoc.lng}&rtt=auto`;
+        routeBtn2.textContent = '🗺️ Построить маршрут к банкету';
     }
 }
 
-// Вспомогательные функции для ошибок
+// Валидация и ошибки
 function showRadioError(name, message) {
     const radio = document.querySelector(`input[name="${name}"]`);
     if (!radio) return;
     const container = radio.closest('.radio-group, .form-group');
     if (!container) return;
+    showErrorInContainer(container, message);
+}
+
+function showCheckboxError(name, message) {
+    const container = document.getElementById('musicOptions');
+    if (!container) return;
+    showErrorInContainer(container, message);
+}
+
+function showErrorInContainer(container, message) {
     let errorEl = container.querySelector('.error-message');
     if (!errorEl) {
         errorEl = document.createElement('span');
@@ -337,20 +354,9 @@ function showRadioError(name, message) {
     errorEl.textContent = message;
 }
 
-function showCheckboxError(name, message) {
-    const container = document.getElementById('musicOptions'); // контейнер с чекбоксами
-    if (!container) return;
-    let errorEl = container.parentElement.querySelector('.error-message');
-    if (!errorEl) {
-        errorEl = document.createElement('span');
-        errorEl.className = 'error-message';
-        container.parentElement.appendChild(errorEl);
-    }
-    errorEl.textContent = message;
-}
-
 function clearErrors() {
     document.querySelectorAll('.error-message').forEach(el => el.remove());
+    document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
 }
 
 // Форма
@@ -360,7 +366,6 @@ function initForm() {
     const guestFields = document.getElementById('guestFields');
     let guestCount = 0;
     
-    // Добавление гостя
     addGuestBtn.addEventListener('click', function() {
         guestCount++;
         const guestDiv = document.createElement('div');
@@ -377,11 +382,8 @@ function initForm() {
         guestFields.appendChild(guestDiv);
     });
     
-    // Отправка формы
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
-        // Очистка предыдущих ошибок
         clearErrors();
         
         const formData = new FormData(form);
@@ -390,54 +392,51 @@ function initForm() {
         
         let isValid = true;
         
-        // Проверка радио-группы "Придёте?"
         if (!attendance) {
             showRadioError('attendance', 'Пожалуйста, выберите вариант');
             isValid = false;
         }
         
-        // Проверка чекбоксов "Напитки"
         if (drinks.length === 0) {
-            showCheckboxError('drinks', 'Пожалуйста, выберите хотя бы один вариант');
+            showCheckboxError('drinks', 'Пожалуйста, выберите хотя бы один напиток');
             isValid = false;
         }
         
-        // Дополнительно можно проверить текстовые поля (имя, фамилия, телефон)
-        const firstName = formData.get('firstName').trim();
-        const lastName = formData.get('lastName').trim();
-        const phone = formData.get('phone').trim();
+        // Проверка обязательных текстовых полей
+        const requiredFields = ['firstName', 'lastName', 'email', 'phone'];
+        requiredFields.forEach(fieldName => {
+            const value = formData.get(fieldName).trim();
+            if (!value) {
+                const input = document.querySelector(`[name="${fieldName}"]`);
+                if (input) {
+                    input.classList.add('error');
+                    const container = input.closest('.form-group');
+                    if (container) {
+                        showErrorInContainer(container, 'Обязательное поле');
+                    }
+                }
+                isValid = false;
+            }
+        });
         
-        if (!firstName) {
-            showTextError('firstName', 'Обязательное поле');
-            isValid = false;
-        }
-        if (!lastName) {
-            showTextError('lastName', 'Обязательное поле');
-            isValid = false;
-        }
-        if (!phone) {
-            showTextError('phone', 'Обязательное поле');
-            isValid = false;
-        }
+        if (!isValid) return;
         
-        if (!isValid) return; // Прерываем, если ошибки есть, лоадер не включали
-        
-        // Валидация пройдена – включаем лоадер и отправляем
+        // Включаем лоадер только после успешной валидации
         const submitBtn = document.getElementById('submitBtn');
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
         
         const data = {
-            attendance,
-            firstName,
-            lastName,
-            phone,
-            drinks,
+            attendance: attendance,
+            firstName: formData.get('firstName').trim(),
+            lastName: formData.get('lastName').trim(),
+            email: formData.get('email').trim(),
+            phone: formData.get('phone').trim(),
+            drinks: drinks,
             additionalInfo: formData.get('additionalInfo').trim(),
             guests: []
         };
         
-        // Сбор гостей
         for (let i = 1; i <= guestCount; i++) {
             const guestName = formData.get(`guest${i}`);
             if (guestName && guestName.trim()) {
@@ -464,21 +463,6 @@ function initForm() {
     });
 }
 
-// Вспомогательная функция для ошибок текстовых полей
-function showTextError(fieldName, message) {
-    const input = document.querySelector(`[name="${fieldName}"]`);
-    if (!input) return;
-    const container = input.closest('.form-group');
-    if (!container) return;
-    let errorEl = container.querySelector('.error-message');
-    if (!errorEl) {
-        errorEl = document.createElement('span');
-        errorEl.className = 'error-message';
-        container.appendChild(errorEl);
-    }
-    errorEl.textContent = message;
-}
-
 // Отправка в Telegram
 async function sendToTelegram(data) {
     try {
@@ -502,7 +486,7 @@ async function sendToTelegram(data) {
     }
 }
 
-// Форматирование сообщения для Telegram
+// Форматирование сообщения для Telegram (используется в serverless функции, здесь для справки)
 function formatTelegramMessage(data) {
     const attendanceEmoji = data.attendance === 'accept' ? '✅' : '❌';
     const attendanceText = data.attendance === 'accept' ? 'Придет 🎉' : 'Не сможет прийти 😔';
@@ -511,6 +495,7 @@ function formatTelegramMessage(data) {
     message += `${attendanceEmoji} <b>Статус:</b> ${attendanceText}\n`;
     message += `👤 <b>Имя и Фамилия:</b> ${data.firstName} ${data.lastName}\n`;
     message += `📱 <b>Телефон:</b> ${data.phone}\n`;
+    message += `📧 <b>Email:</b> ${data.email}\n`;
     
     if (data.drinks && data.drinks.length > 0) {
         message += `🍹 <b>Предпочтения по напиткам:</b> ${data.drinks.join(', ')}\n`;
