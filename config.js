@@ -143,11 +143,11 @@ const WEDDING_CONFIG = {
     },
     
     images: {
-        header1: "https://sun9-32.vkuserphoto.ru/s/v1/ig2/EDM9WEULFWu6m0veG5LvPFt0vRIGq2Kck6at2eYrWoa1SnA4mVTLw74hqelJqqDlOapzJNnVjT20pvqImrGAYZUu.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0",
-        header2: "https://sun9-20.vkuserphoto.ru/s/v1/ig2/lixx1ZDLT0bHK_92xAwTu2byVdQ0Qg5CSmfIU8aAmcBpxnOX9kDwGJZmsEmn93_ASo5NOegNcXgeqSZ0OEDl0MSp.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0",
-        header3: "https://sun9-21.vkuserphoto.ru/s/v1/ig2/IZlWfa1SzerHf2-jFhZIjp4JFiuZiuRYo_kG2eE1kf7eBwvmxXDMNPVyI1Ctq-nSti4SQdkgbiCffT-oVyvOIh1j.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0",
-        header4: "https://sun9-58.vkuserphoto.ru/s/v1/ig2/zZ6Ws34w94oscLD8OcZtuwlw1ZivchdLsptPygeO0VYmovQn9tM1ZRntnGgzfHfsEVYzMDH-m9t545BeiHQv9zHl.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0",
-        header5: "https://sun9-39.vkuserphoto.ru/s/v1/ig2/FrZl6sl2Jh_IwoJRPcrFj86J6xbWa8-tG98vGwm2vCOeaircJcd6lFV3Atwp2VhdxDA-FxmeDfSDju2oZUtgd5Wv.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=n6q2BrFBXMMBWR6samBRcTGILqMaQAsrS218B0WtI8o&cs=960x0",
+        header1: "https://sun9-86.vkuserphoto.ru/s/v1/ig2/ReGLUYevnJr3hufuL_vD9pnA7cS6bEOmNyvecGdFhDEjlaNUOINgqpp7oWkTswjLNxwZIn7DrNdUv6HPNG2WhWX4.jpg?quality=95&as=32x38,48x58,72x86,108x130,160x192,240x288,360x432,480x576,540x648,640x768,720x865,1066x1280&from=bu&u=IgseGegEa3IJtLaYDWfnoUs66j1HHzondekmdxRwqpk&cs=1066x0",
+        header2: "https://sun9-1.vkuserphoto.ru/s/v1/ig2/va2bn8yOJGDuFPUe0kwNQpJ0_UPHN4F69SB5mPB_X1Uz9xYqBgDNeznw6kOUJVPM28gA13mWQ-fzd7UEdmjpoCrL.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=aCorGtYDfGQuK8XLH5fCovQnF9A26Nn9hKHo8SlOH98&cs=960x0",
+        header3: "https://sun9-39.vkuserphoto.ru/s/v1/ig2/FrZl6sl2Jh_IwoJRPcrFj86J6xbWa8-tG98vGwm2vCOeaircJcd6lFV3Atwp2VhdxDA-FxmeDfSDju2oZUtgd5Wv.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=n6q2BrFBXMMBWR6samBRcTGILqMaQAsrS218B0WtI8o&cs=960x0",
+        header4: "https://sun9-58.vkuserphoto.ru/s/v1/ig2/zZ6Ws34w94oscLD8OcZtuwlw1ZivchdLsptPygeO0VYmovQn9tM1ZRntnGgzfHfsEVYzMDH-m9t545BeiHQv9zHl.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=SBooXtjw5EGbnMNsCVCKRCF_sfUSFgoSRI-I6uVGLlE&cs=960x0",
+        header5: "https://sun9-71.vkuserphoto.ru/s/v1/ig2/Mw5oppqYRARxVbYi0oX1PSBxs_FCxTcR70vRZXyBkimaOoYOHWKwX8g4cVl11znTZdI4zPNAQo1MqlwerdFMu9sJ.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0",
         rsvp: "https://sun9-6.vkuserphoto.ru/s/v1/ig2/4DmBlZndAle_W2RpRJVvSGw0k-Icm2luBafqPO6EfyNbYFSYHIaGE-pTEFveKX8f3-hhCF6MGdrwgg6kt6upk28-.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0"
     },
     
