@@ -1,24 +1,20 @@
 // api/send-rsvp.js
 export default async function handler(req, res) {
-    // Разрешаем CORS для вашего домена
+    // CORS заголовки
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    // Обработка preflight запроса
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
 
-    // Принимаем только POST
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
     try {
         const data = req.body;
-        
-        // Токен и Chat ID из переменных окружения Vercel (БЕЗОПАСНО!)
         const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
         const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
         
@@ -28,8 +24,7 @@ export default async function handler(req, res) {
         
         const message = formatMessage(data);
         
-        // Отправка в Telegram
-        const telegramResponse = await fetch(
+        const response = await fetch(
             `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
             {
                 method: 'POST',
@@ -42,7 +37,7 @@ export default async function handler(req, res) {
             }
         );
         
-        const result = await telegramResponse.json();
+        const result = await response.json();
         
         if (result.ok) {
             return res.status(200).json({ success: true });
@@ -61,9 +56,14 @@ function formatMessage(data) {
     
     let message = `💍 <b>Новый ответ на приглашение!</b>\n\n`;
     message += `${attendanceEmoji} <b>Статус:</b> ${attendanceText}\n`;
-    message += `👤 <b>Имя и Фамилия:</b> ${data.firstName} ${data.lastName}\n`;
+    message += `👤 <b>Имя:</b> ${data.firstName} ${data.lastName}\n`;
+    message += `📧 <b>Email:</b> ${data.email}\n`;
     message += `📱 <b>Телефон:</b> ${data.phone}\n`;
-    message += `🎵 <b>Алко:</b> ${data.music}\n`;
+    
+    // Проверяем, что drinks существует и не пуст
+    if (data.drinks && data.drinks.length > 0) {
+        message += `🍹 <b>Предпочтения по напиткам:</b> ${data.drinks.join(', ')}\n`;
+    }
     
     if (data.guests && data.guests.length > 0) {
         message += `\n👥 <b>Гости:</b>\n`;
