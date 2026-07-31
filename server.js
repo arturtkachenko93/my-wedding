@@ -53,7 +53,6 @@ ${attendanceEmoji} <b>Новый ответ на приглашение!</b>
 
 <b>Статус:</b> ${attendance}
 <b>Имя:</b> ${data.firstName} ${data.lastName}
-<b>Email:</b> ${data.email}
 <b>Телефон:</b> ${data.phone}
 <b>Предпочитаемая музыка:</b> ${data.music}
 `;

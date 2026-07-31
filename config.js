@@ -14,16 +14,16 @@ const WEDDING_CONFIG = {
     // Локации для карты
     locations: {
         ceremony: {
-            name: "Церемония",
-            address: "ул. Ленина, 117, Москва",
-            lat: 55.7558,
-            lng: 37.6173
+            name: "Банкет",
+            address: "Юбилейный проспект, 23В, Реутов",
+            lat: 55.749719,
+            lng: 37.861788
         },
         party: {
             name: "Банкет",
-            address: "ул. Пушкина, 218, Москва",
-            lat: 55.7658,
-            lng: 37.6273
+            address: "Юбилейный проспект, 23В, Реутов",
+            lat: 55.749719,
+            lng: 37.861788
         }
     },
     
@@ -31,78 +31,79 @@ const WEDDING_CONFIG = {
     details: {
         date: {
             title: "Дата",
-            day: "22 октября",
+            day: "09.09.2026",
             dayOfWeek: "Среда"
         },
         time: {
             title: "Время",
-            start: "Начало в 16:00",
-            end: "Завершение в 23:30"
+            start: "Начало в 15:00",
+            end: "Завершение в 22:30"
         },
         location: {
             title: "Локация",
-            ceremony: "Церемония — ул. Ленина, 117",
-            party: "Банкет — ул. Пушкина, 218"
+            party: "Свадебный ужин — г. Реутов, ул. Юбилейный проспект, 23В, ресторан «Дюна»"
         }
     },
     
     timeline: [
         {
-            time: "16:00",
-            title: "Церемония",
-            icon: "💒",
-            description: "Торжественная церемония бракосочетания"
-        },
-        {
-            time: "17:00",
-            title: "Коктейльный час",
+            time: "15:00",
+            title: "Сбор гостей",
             icon: "🥂",
-            description: "Легкие закуски и напитки"
+            description: "Приветственный фуршет и сбор гостей"
         },
         {
-            time: "19:00",
+            time: "16:00",
             title: "Ужин и тосты",
             icon: "🍽️",
-            description: "Праздничный ужин и поздравления"
+            description: "Начало свадебного ужина"
         },
         {
             time: "20:30",
-            title: "Танцы",
+            title: "Свадебный торт",
+            icon: "🎂",
+            description: "Время сладких традиций"
+        },
+        {
+            time: "22:30",
+            title: "Завершение вечера",
             icon: "💃",
-            description: "Танцы и веселье до утра"
+            description: "Объятия на прощание"
         }
     ],
     
     dressCode: {
         subtitle: "Дресс-код нашей свадьбы",
-        title: "Пожалуйста, приходите в нарядах зеленых или кремовых оттенков и наслаждайтесь праздником вместе с нами!",
-        colors: ["кремовый", "зеленый"]
+        title: "Нам очень важна атмосфера праздника, и мы будем рады, если вы поддержите цветовую гамму нашей свадьбы в своих нарядах!\n\nПрекрасных дам мы просим обратить внимание на нюдовые оттенки розового, желтого и голубого!\n\nДля мужчин отличным выбором станут костюмы или детали образа в серой, классической черной или темно-зеленой гамме.\n\nСовсем не обязательно одеваться строго в эти цвета, но нам будет очень приятно видеть эти нотки в ваших образах!",
+        colors: ["розовый", "желтый", "голубой"]
     },
     
     rsvp: {
         subtitle: "Вы придете?",
         title: "Подтверждение присутствия",
-        deadline: "Пожалуйста, ответьте до 1 октября",
+        deadline: "Пожалуйста, ответьте до 15 августа",
         question: "Вы приглашены на нашу свадьбу",
         acceptText: "С радостью приду",
         declineText: "К сожалению, не смогу",
         firstNameLabel: "Имя",
         lastNameLabel: "Фамилия",
-        emailLabel: "Email",
         phoneLabel: "Телефон",
         addGuestText: "+ Добавить гостя",
         guestNameLabel: "Имя гостя",
-        musicQuestion: "Какая музыка заставит вас танцевать?",
+        musicQuestion: "Какой напиток вы предпочтёте на нашем празднике?",
         musicOptions: [
-            "Латиноамериканская музыка",
-            "Поп-музыка",
-            "Рок-н-ролл",
-            "Ретро-хиты"
+            "Водка",
+            "Ром",
+            "Вино сух",
+            "Вино п/сл",
+            "Шампанское",
+            "Сок или морс"
         ],
         additionalInfoLabel: "Что-то еще, что нам нужно знать?",
         submitText: "Отправить",
         successTitle: "Спасибо!",
-        successMessage: "Ваш ответ успешно отправлен. Ждем вас на нашем празднике!"
+        successMessage: "Ваш ответ успешно отправлен. Ждем вас на нашем празднике!",
+        noteText: "❣️ Пожалуйста, обратите внимание, что наше свадебное торжество пройдет в формате закрытого ужина для взрослых. Просим вас заранее позаботиться о том, с кем останутся ваши дети на время праздника. Мы надеемся, что это позволит вам полноценно отдохнуть и насладиться праздником вместе с нами! Благодарим за понимание 🫶🏻",
     },
     
     navigation: [
@@ -113,7 +114,7 @@ const WEDDING_CONFIG = {
     ],
     
     header: {
-        subtitle: "Приглашаем вас отпраздновать важный день",
+        subtitle: "Мы рады пригласить вас на торжество, посвященное нашему бракосочетанию",
         additionalText: "И так начинается приключение",
         rsvpBtnText: "Подтвердить участие"
     },
@@ -142,12 +143,12 @@ const WEDDING_CONFIG = {
     },
     
     images: {
-        header1: "https://images.unsplash.com/photo-1519741497674-611481863552?w=600",
-        header2: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600",
-        header3: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600",
-        header4: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600",
-        header5: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=600",
-        rsvp: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600"
+        header1: "https://sun9-32.vkuserphoto.ru/s/v1/ig2/EDM9WEULFWu6m0veG5LvPFt0vRIGq2Kck6at2eYrWoa1SnA4mVTLw74hqelJqqDlOapzJNnVjT20pvqImrGAYZUu.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0",
+        header2: "https://sun9-20.vkuserphoto.ru/s/v1/ig2/lixx1ZDLT0bHK_92xAwTu2byVdQ0Qg5CSmfIU8aAmcBpxnOX9kDwGJZmsEmn93_ASo5NOegNcXgeqSZ0OEDl0MSp.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0",
+        header3: "https://sun9-21.vkuserphoto.ru/s/v1/ig2/IZlWfa1SzerHf2-jFhZIjp4JFiuZiuRYo_kG2eE1kf7eBwvmxXDMNPVyI1Ctq-nSti4SQdkgbiCffT-oVyvOIh1j.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0",
+        header4: "https://sun9-58.vkuserphoto.ru/s/v1/ig2/zZ6Ws34w94oscLD8OcZtuwlw1ZivchdLsptPygeO0VYmovQn9tM1ZRntnGgzfHfsEVYzMDH-m9t545BeiHQv9zHl.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0",
+        header5: "https://sun9-39.vkuserphoto.ru/s/v1/ig2/FrZl6sl2Jh_IwoJRPcrFj86J6xbWa8-tG98vGwm2vCOeaircJcd6lFV3Atwp2VhdxDA-FxmeDfSDju2oZUtgd5Wv.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=n6q2BrFBXMMBWR6samBRcTGILqMaQAsrS218B0WtI8o&cs=960x0",
+        rsvp: "https://sun9-6.vkuserphoto.ru/s/v1/ig2/4DmBlZndAle_W2RpRJVvSGw0k-Icm2luBafqPO6EfyNbYFSYHIaGE-pTEFveKX8f3-hhCF6MGdrwgg6kt6upk28-.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0"
     },
     
     telegram: {

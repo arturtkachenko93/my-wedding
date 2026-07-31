@@ -90,12 +90,10 @@ function populateContent() {
     setText('rsvpSubtitle', config.rsvp.subtitle);
     setText('rsvpTitle', config.rsvp.title);
     setText('rsvpDeadline', config.rsvp.deadline);
-    setText('rsvpQuestion', config.rsvp.question);
     setText('acceptText', config.rsvp.acceptText);
     setText('declineText', config.rsvp.declineText);
     setText('firstNameLabel', config.rsvp.firstNameLabel);
     setText('lastNameLabel', config.rsvp.lastNameLabel);
-    setText('emailLabel', config.rsvp.emailLabel);
     setText('phoneLabel', config.rsvp.phoneLabel);
     setText('addGuestText', config.rsvp.addGuestText);
     setText('musicQuestion', config.rsvp.musicQuestion);
@@ -103,6 +101,7 @@ function populateContent() {
     setText('submitText', config.rsvp.submitText);
     setText('successTitle', config.rsvp.successTitle);
     setText('successMessage', config.rsvp.successMessage);
+    setText('rsvpNote', config.rsvp.noteText);
     
     // Музыкальные опции
     const musicOptions = document.getElementById('musicOptions');
@@ -110,10 +109,10 @@ function populateContent() {
         const label = document.createElement('label');
         label.className = 'radio-label';
         label.innerHTML = `
-            <input type="radio" name="music" value="${option}" ${index === 0 ? 'checked' : ''}>
-            <span class="radio-custom"></span>
-            <span>${option}</span>
-        `;
+        <input type="radio" name="music" value="${option}" ${index === 0 ? 'checked' : ''}>
+        <span class="radio-custom"></span>
+        <span>${option}</span>
+    `;
         musicOptions.appendChild(label);
     });
     
@@ -387,7 +386,6 @@ function initForm() {
             attendance: formData.get('attendance'),
             firstName: formData.get('firstName'),
             lastName: formData.get('lastName'),
-            email: formData.get('email'),
             phone: formData.get('phone'),
             music: formData.get('music'),
             additionalInfo: formData.get('additionalInfo'),
@@ -457,7 +455,6 @@ function formatTelegramMessage(data) {
 
 ${attendanceEmoji} <b>Статус:</b> ${attendanceText}
 👤 <b>Имя:</b> ${data.firstName} ${data.lastName}
-📧 <b>Email:</b> ${data.email}
 📱 <b>Телефон:</b> ${data.phone}
 🎵 <b>Музыка:</b> ${data.music}
 `;

@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="Свадебный сайт Карло и Софии">
-    <title>Свадьба Карло и Софии</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
-    
+    <title>Свадьба А и Т</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Pacifico&display=swap" rel="stylesheet">
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
     
@@ -74,6 +71,9 @@
                         <span class="ring ring-right">💍</span>
                     </div>
                     <p class="header-date pulse-text" id="headerDate"></p>
+                    <h1 class="header-title2" id="headerTitle2">
+                        <span class="name-animation">09.09.2026</span>
+                    </h1>
                     <a href="#rsvp" class="btn-primary btn-shine">
                         <span id="rsvpBtnText"></span>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -88,9 +88,6 @@
                     </div>
                     <div class="header-img-frame floating" data-speed="0.6">
                         <img src="" alt="Фото 5" id="headerImg5" loading="lazy">
-                    </div>
-                    <div class="header-additional fade-in-right">
-                        <p id="headerAdditionalText"></p>
                     </div>
                 </div>
             </div>
@@ -161,10 +158,7 @@
                     <h3 class="map-title">📍 Как добраться</h3>
                     <div class="map-container" id="mapContainer">
                         <div class="map-tabs">
-                            <button class="map-tab active" data-location="ceremony">
-                                💒 Церемония
-                            </button>
-                            <button class="map-tab" data-location="party">
+                            <button class="map-tab active" data-location="party">
                                 🎉 Банкет
                             </button>
                         </div>
@@ -172,9 +166,6 @@
                             <div id="map" class="map-frame"></div>
                         </div>
                         <div class="map-buttons">
-                            <a href="#" class="btn-route" id="routeBtn1" target="_blank">
-                                🗺️ Построить маршрут к церемонии
-                            </a>
                             <a href="#" class="btn-route" id="routeBtn2" target="_blank">
                                 🗺️ Построить маршрут к банкету
                             </a>
@@ -201,20 +192,16 @@
                     <p class="dress-code-subtitle" id="dressCodeSubtitle"></p>
                     <h2 class="dress-code-title" id="dressCodeTitle"></h2>
                     <div class="dress-code-colors">
-                        <div class="color-circle cream">
-                            <span class="color-label">Кремовый</span>
-                        </div>
-                        <div class="color-circle green">
-                            <span class="color-label">Зеленый</span>
-                        </div>
+
+
                     </div>
                     <div class="dress-code-palette">
-                        <div class="palette-item" style="background: #FFFDD0"></div>
-                        <div class="palette-item" style="background: #F5F0E8"></div>
-                        <div class="palette-item" style="background: #E8E0D5"></div>
-                        <div class="palette-item" style="background: #A7B3A3"></div>
-                        <div class="palette-item" style="background: #8B9D83"></div>
-                        <div class="palette-item" style="background: #6B7B63"></div>
+                        <div class="palette-item" style="background: #F0D3D3"></div>
+                        <div class="palette-item" style="background: #F7E9B9"></div>
+                        <div class="palette-item" style="background: #D5E4EB"></div>
+                        <div class="palette-item" style="background: #8C8C8C"></div>
+                        <div class="palette-item" style="background: #1A1A1A"></div>
+                        <div class="palette-item" style="background: #2E3F33"></div>
                     </div>
                 </div>
             </div>
@@ -230,12 +217,9 @@
                     <div class="rsvp-content">
                         <p class="rsvp-subtitle" id="rsvpSubtitle"></p>
                         <h2 class="rsvp-title" id="rsvpTitle"></h2>
-                        <p class="rsvp-deadline" id="rsvpDeadline"></p>
-                        <p class="rsvp-date" id="rsvpDate"></p>
                         
                         <form id="rsvpForm" class="rsvp-form">
                             <div class="form-group radio-group">
-                                <label class="form-label" id="rsvpQuestion"></label>
                                 <div class="radio-options">
                                     <label class="radio-label">
                                         <input type="radio" name="attendance" value="accept" checked>
@@ -243,7 +227,7 @@
                                         <span id="acceptText"></span>
                                     </label>
                                     <label class="radio-label">
-                                        <input type="radio" name="attendance" value="decline">
+                                        <input type="radio" name="attendance" value="decline" >
                                         <span class="radio-custom"></span>
                                         <span id="declineText"></span>
                                     </label>
@@ -266,12 +250,6 @@
                             </div>
                             
                             <div class="form-row">
-                                <div class="form-group">
-                                    <label class="form-label" for="email">
-                                        <span id="emailLabel"></span> *
-                                    </label>
-                                    <input type="email" id="email" name="email" required>
-                                </div>
                                 <div class="form-group">
                                     <label class="form-label" for="phone">
                                         <span id="phoneLabel"></span> *
@@ -305,6 +283,8 @@
                                     <!-- Dynamic guest fields -->
                                 </div>
                             </div>
+
+                            <p class="rsvp-note" id="rsvpNote"></p>
                             
                             <button type="submit" class="btn-submit" id="submitBtn">
                                 <span id="submitText"></span>
