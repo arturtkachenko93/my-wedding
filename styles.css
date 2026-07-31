@@ -1726,6 +1726,10 @@ textarea:focus {
         margin-bottom: 0;
     }
 
+    .name-animation {
+        line-height: 65px;
+    }
+
 }
 
 .checkbox-label {
